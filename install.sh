@@ -17,7 +17,7 @@ ckcmd() { #检查命令
     if command -v sh >/dev/null 2>&1;then
         command -v "$1" >/dev/null 2>&1
     else
-        type "$1" >/dev/null 2>&1
+        输入 "$1" >/dev/null 2>&1
     fi
 }
 webget() {
@@ -84,7 +84,7 @@ gettar() {
         tar -zxf '/tmp/ShellCrash.tar.gz' -C $CRASHDIR/ || tar -zxf '/tmp/ShellCrash.tar.gz' --no-same-owner -C $CRASHDIR/
         if [ -s $CRASHDIR/init.sh ]; then
             set_alias
-            . $CRASHDIR/init.sh >/dev/null
+            。 $CRASHDIR/init.sh >/dev/null
             [ "$?" != 0 ] && $echo "\033[33m初始化失败，请尝试本地安装！\033[0m" && exit 1
         else
             rm -rf /tmp/ShellCrash.tar.gz
@@ -129,7 +129,7 @@ setdir() {
     echo "-----------------------------------------------"
     $echo "\033[33m注意：安装ShellCrash至少需要预留约1MB的磁盘空间\033[0m"
     if [ -n "$systype" ]; then
-        [ "$systype" = "Padavan" ] && dir=/etc/storage
+        [ "$systype" = "Padavan" ] && dir=/media/AiCard_01/shellcrash
         [ "$systype" = "mi_snapshot" ] && {
             $echo "\033[33m检测到当前设备为小米官方系统，请选择安装位置\033[0m"
             [ -d /data ] && $echo " 1 安装到 /data 目录,剩余空间：$(dir_avail /data -h)(支持软固化功能)"
@@ -261,9 +261,9 @@ setversion() {
     esac
 }
 #特殊固件识别及标记
-[ -f "/etc/storage/started_script.sh" ] && {
+[ -f "/media/AiCard_01/shellcrash/started_script.sh" ] && {
     systype=Padavan #老毛子固件
-    initdir='/etc/storage/started_script.sh'
+    initdir='/media/AiCard_01/shellcrash/started_script.sh'
 }
 [ -d "/jffs" ] && {
     systype=asusrouter #华硕固件
